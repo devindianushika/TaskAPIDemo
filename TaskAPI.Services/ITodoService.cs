@@ -8,6 +8,6 @@ namespace TaskAPI.Services
 {
     public interface ITodoService
     {
-        public List<Todo> AllTodos();
+        List<Todo> AllTodos();
     }
 }
