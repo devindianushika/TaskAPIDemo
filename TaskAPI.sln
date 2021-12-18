@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskAPI.Models", "TaskAPI.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskAPI.Services", "TaskAPI.Services\TaskAPI.Services.csproj", "{781F1C52-46A6-40C9-A520-9E70FE0420A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskAPI.DataAccess", "TaskAPi.DataAccess\TaskAPI.DataAccess.csproj", "{32F77EAA-1283-40F7-A9CB-2D19B749B333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskAPi.DataAccess", "TaskAPi.DataAccess\TaskAPi.DataAccess.csproj", "{32F77EAA-1283-40F7-A9CB-2D19B749B333}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

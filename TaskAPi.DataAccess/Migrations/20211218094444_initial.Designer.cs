@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskAPi.DataAccess;
 
 namespace TaskAPi.DataAccess.Migrations
 {
     [DbContext(typeof(TodoDbContext))]
-    partial class TodoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211218094444_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,17 +46,6 @@ namespace TaskAPi.DataAccess.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Todos");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            Created = new DateTime(2021, 12, 18, 15, 34, 47, 378, DateTimeKind.Local).AddTicks(38),
-                            Description = " Physical health relared task from DB",
-                            Due = new DateTime(2021, 12, 23, 0, 0, 0, 0, DateTimeKind.Local),
-                            Status = 0,
-                            Title = "Morning Exercising"
-                        });
                 });
 #pragma warning restore 612, 618
         }

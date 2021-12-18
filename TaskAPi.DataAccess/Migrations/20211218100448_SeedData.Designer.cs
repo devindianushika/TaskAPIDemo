@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskAPi.DataAccess;
 
-namespace TaskAPI.DataAccess.Migrations
+namespace TaskAPi.DataAccess.Migrations
 {
     [DbContext(typeof(TodoDbContext))]
-    [Migration("20211216071816_Initial1")]
-    partial class Initial1
+    [Migration("20211218100448_SeedData")]
+    partial class SeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,17 @@ namespace TaskAPI.DataAccess.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Todos");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            Created = new DateTime(2021, 12, 18, 15, 34, 47, 378, DateTimeKind.Local).AddTicks(38),
+                            Description = " Physical health relared task from DB",
+                            Due = new DateTime(2021, 12, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            Status = 0,
+                            Title = "Morning Exercising"
+                        });
                 });
 #pragma warning restore 612, 618
         }

@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskAPi.DataAccess\TaskAPI.DataAccess.csproj" />
+    <ProjectReference Include="..\TaskAPi.DataAccess\TaskAPi.DataAccess.csproj" />
     <ProjectReference Include="..\TaskAPI.Services\TaskAPI.Services.csproj" />
   </ItemGroup>
 
