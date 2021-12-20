@@ -10,6 +10,7 @@ namespace TaskAPi.DataAccess
     {
         
         public DbSet<Todo>Todos { get; set; }
+        public DbSet<Author> Authors { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = "Data Source=desktop-33mepoj;Initial Catalog=TodoDB;Integrated Security=True";
@@ -18,14 +19,31 @@ namespace TaskAPi.DataAccess
 
       protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Todo>().HasData(new Todo
+            modelBuilder.Entity<Author>().HasData(new Author[] { 
+            
+            new Author{Id = 1, FullName = "James William"},
+            new Author{Id = 2, FullName = "Merry Diyas"},
+            new Author{Id = 3, FullName = "Stein Martin"}
+            });
+
+            modelBuilder.Entity<Todo>().HasData(new Todo[]
             {
-                id = 1,
+                new Todo{ id = 1,
                 Title = "Morning Exercising",
                 Description = " Physical health relared task from DB",
                 Created = DateTime.Now,
                 Due = DateTime.Today.AddDays(5),
-                Status = TodoStatus.New
+                Status = TodoStatus.New,
+                Authorid = 1 },
+
+                new Todo{ id = 2,
+                Title = "Watch television",
+                Description = " test from db",
+                Created = DateTime.Now,
+                Due = DateTime.Today.AddDays(5),
+                Status = TodoStatus.New,
+                Authorid = 3 },
+
             });
         }
     }

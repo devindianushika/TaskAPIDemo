@@ -15,6 +15,8 @@ namespace TaskAPI.Models
         public DateTime Due { get; set; }
 
         public TodoStatus Status { get; set; }
+        public int Authorid { get; set; }
+        public Author Author { get; set; }
 
 
 

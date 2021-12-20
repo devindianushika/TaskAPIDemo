@@ -5,7 +5,7 @@ using TaskAPI.Models;
 using TaskAPi.DataAccess;
 using System.Linq;
 
-namespace TaskAPI.Services
+namespace TaskAPI.Services.Todos
 {
     public class TodoSqlService : ITodoService
     {

@@ -4,11 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TaskAPI.Services;
-
+using TaskAPI.Services.Todos;
 namespace TaskAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/tasks")]
     [ApiController]
 
     
