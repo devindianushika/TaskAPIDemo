@@ -15,5 +15,9 @@ namespace TaskAPI.Services.Todos
         {
             return _todbcontext.Todos.ToList();
         }
+        public Todo getTodo(int id)
+        {
+            return _todbcontext.Todos.Find(id);
+        }
     }
 }

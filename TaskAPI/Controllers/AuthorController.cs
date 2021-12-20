@@ -30,6 +30,12 @@ namespace TaskAPI.Controllers
         public IActionResult GetAuthor(int id)
         {
             var author = _authorService.GetAuthor(id);
+
+            if (author is null)
+            {
+                return NotFound();
+            }
+               
             return Ok(author);
         }
 

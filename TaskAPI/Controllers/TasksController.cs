@@ -19,16 +19,24 @@ namespace TaskAPI.Controllers
         {
             _itodoservice = itodoservice;
         }
-        
 
-        [HttpGet("{id?}")]
-        public IActionResult GetTodos(int ? id)
+
+        [HttpGet]
+        public IActionResult GetAllTodos()
         {
-            var listOfTodos = _itodoservice.AllTodos();
-            if (id is null)
-                return Ok(listOfTodos);
-
-            var task = listOfTodos.Where(t => t.id == id);
+            var todos =  _itodoservice.AllTodos();
+            return Ok(todos);
+        }
+           
+            [HttpGet("{id}")]
+        public IActionResult GetTodo(int id)
+        {
+            var task = _itodoservice.getTodo(id);
+            if (task is null)
+            {
+                return NotFound();
+            }
+                
            
             return Ok(task);
         }

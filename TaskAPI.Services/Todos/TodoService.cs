@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using TaskAPI.Models;
 namespace TaskAPI.Services.Todos
 {
-    public class TodoService: ITodoService
+    public class TodoServic
     {
 
        public List<Todo> AllTodos()
