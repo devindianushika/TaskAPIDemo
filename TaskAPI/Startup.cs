@@ -38,6 +38,7 @@ namespace TaskAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TaskAPI", Version = "v1" });
             });
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // to map every domain in our project
             services.AddScoped<ITodoService, TodoSqlService>();
             services.AddScoped<IAuthorService, AuthorService>();
         }

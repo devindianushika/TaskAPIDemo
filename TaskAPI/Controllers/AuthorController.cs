@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,26 +15,19 @@ namespace TaskAPI.Controllers
     public class AuthorController : ControllerBase
     {
         private readonly IAuthorService _authorService ;
+        private readonly IMapper _imapper;
 
-        public AuthorController(IAuthorService authorService)
+        public AuthorController(IAuthorService authorService, IMapper imapper)
         {
             _authorService = authorService;
+            _imapper = imapper;
         }
 
         [HttpGet]
         public ActionResult<ICollection<AuthorDTO>> GetAllAuthors()
         {
            var authorlist =  _authorService.GetAllAuthors();
-            var authordto =new List<AuthorDTO>();
-            foreach(var author in authorlist)
-            {
-                authordto.Add(new AuthorDTO
-                {
-                Id = author.Id,
-                FullName = author.FullName,
-                Address = $"{author.Address},{author.Street},{author.City}"
-                });
-            }
+           var authordto = _imapper.Map<ICollection<AuthorDTO>>(authorlist);
 
             return Ok(authordto);
         }
@@ -47,8 +41,9 @@ namespace TaskAPI.Controllers
             {
                 return NotFound();
             }
-               
-            return Ok(author);
+
+            var MappedAuthordto = _imapper.Map<AuthorDTO>(author);
+            return Ok(MappedAuthordto);
         }
 
         
