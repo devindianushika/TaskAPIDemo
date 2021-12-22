@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskAPI.Services.Authors;
+using TaskAPI.Services.ViewModels;
 
 namespace TaskAPI.Controllers
 {
@@ -20,10 +21,21 @@ namespace TaskAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllAuthors()
+        public ActionResult<ICollection<AuthorDTO>> GetAllAuthors()
         {
            var authorlist =  _authorService.GetAllAuthors();
-            return Ok(authorlist);
+            var authordto =new List<AuthorDTO>();
+            foreach(var author in authorlist)
+            {
+                authordto.Add(new AuthorDTO
+                {
+                Id = author.Id,
+                FullName = author.FullName,
+                Address = $"{author.Address},{author.Street},{author.City}"
+                });
+            }
+
+            return Ok(authordto);
         }
 
         [HttpGet("{id}")]

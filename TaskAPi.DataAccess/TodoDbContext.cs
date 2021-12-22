@@ -21,9 +21,9 @@ namespace TaskAPi.DataAccess
         {
             modelBuilder.Entity<Author>().HasData(new Author[] { 
             
-            new Author{Id = 1, FullName = "James William"},
-            new Author{Id = 2, FullName = "Merry Diyas"},
-            new Author{Id = 3, FullName = "Stein Martin"}
+            new Author{Id = 1, FullName = "James William", Address= "12/7", Street= "street1" ,City ="Colombo" },
+            new Author{Id = 2, FullName = "Merry Diyas",Address= "20", Street= "street2" ,City ="Colombo"},
+            new Author{Id = 3, FullName = "Stein Martin",Address= "52/1", Street= "street3" ,City ="Kandy"}
             });
 
             modelBuilder.Entity<Todo>().HasData(new Todo[]
