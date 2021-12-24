@@ -1,44 +1,50 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskAPI.Services.Todos;
+using TaskAPI.Services.ViewModels;
+
 namespace TaskAPI.Controllers
 {
-    [Route("api/tasks")]
+    [Route("api/authors/{authorid}/tasks")]
     [ApiController]
 
     
     public class TasksController : ControllerBase
     {
         private readonly ITodoService _itodoservice;
+        private readonly IMapper _imapper;
 
-            public TasksController(ITodoService itodoservice)
+            public TasksController(ITodoService itodoservice,IMapper imapper)
         {
             _itodoservice = itodoservice;
+            _imapper = imapper;
         }
 
 
         [HttpGet]
-        public IActionResult GetAllTodos()
+        public ActionResult <ICollection<TodoDTO>> GetAllTodos(int authorid)
         {
-            var todos =  _itodoservice.AllTodos();
-            return Ok(todos);
+            var todos =  _itodoservice.AllTodos(authorid);
+            var mappedTodos = _imapper.Map<ICollection<TodoDTO>>(todos);
+            return Ok(mappedTodos);
         }
            
-            [HttpGet("{id}")]
-        public IActionResult GetTodo(int id)
+        [HttpGet("{id}")]
+        public IActionResult GetTodo(int authorid, int id)
         {
-            var task = _itodoservice.getTodo(id);
+            var task = _itodoservice.getTodo(authorid, id);
             if (task is null)
             {
                 return NotFound();
             }
                 
-           
-            return Ok(task);
+           var mappedTask = _imapper.Map<TodoDTO>(task);
+            return Ok(mappedTask);
         }
 
 

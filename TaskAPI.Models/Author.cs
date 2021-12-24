@@ -17,6 +17,11 @@ namespace TaskAPI.Models
         public string Street { get; set; }
         [MaxLength(50)]
         public string City { get; set; }
+
         public ICollection<Todo> Todos { get; set; } = new List<Todo>();
+
+        [Required]
+        [MaxLength(250)]
+        public string Jobrole { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace TaskAPI.Services.ViewModels
         public string FullName { get; set; }
        
         public string Address { get; set; }
+        public string Jobrole { get; set; }
       
     }
 }

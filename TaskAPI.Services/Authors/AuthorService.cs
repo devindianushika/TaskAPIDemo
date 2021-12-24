@@ -20,5 +20,19 @@ namespace TaskAPI.Services.Authors
             return _todoDbContext.Authors.Where(a => a.Id == id).FirstOrDefault();
         }
 
+        public List<Author> GetAllAuthors(string job,string search)
+        {
+            if (string.IsNullOrWhiteSpace(job))
+            {
+               return this.GetAllAuthors();
+            }
+
+            else
+            {
+                job = job.Trim();
+                return _todoDbContext.Authors.Where(a => a.Jobrole == job).ToList();
+            }
+        }
+
     }
 }
