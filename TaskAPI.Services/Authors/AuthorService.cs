@@ -22,16 +22,26 @@ namespace TaskAPI.Services.Authors
 
         public List<Author> GetAllAuthors(string job,string search)
         {
-            if (string.IsNullOrWhiteSpace(job))
+            if (string.IsNullOrWhiteSpace(job) & string.IsNullOrWhiteSpace(search))
             {
                return this.GetAllAuthors();
+
             }
 
-            else
+            var authorcollection = _todoDbContext.Authors as IQueryable<Author>;// author type Iqueryable akak,use to construct a command
+            if (!string.IsNullOrWhiteSpace(job))
             {
                 job = job.Trim();
-                return _todoDbContext.Authors.Where(a => a.Jobrole == job).ToList();
+                authorcollection = authorcollection.Where(a => a.Jobrole == job);
             }
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                search = search.Trim();
+                authorcollection = authorcollection.Where(a => a.FullName.Contains(search) || a.City.Contains(search));
+            }
+
+            return authorcollection.ToList(); //to get better performance use data base call at this point only
         }
 
     }

@@ -24,10 +24,10 @@ namespace TaskAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ICollection<AuthorDTO>> GetAllAuthors()
+        public ActionResult<ICollection<AuthorDTO>> GetAllAuthors(string job,string search)
         {
-           var authorlist =  _authorService.GetAllAuthors();
-           var authordto = _imapper.Map<ICollection<AuthorDTO>>(authorlist);
+           var authorlist =  _authorService.GetAllAuthors(job,search);
+           var authordto = _imapper.Map<ICollection<AuthorDTO>>(authorlist); //<destination>(source)
 
             return Ok(authordto);
         }
