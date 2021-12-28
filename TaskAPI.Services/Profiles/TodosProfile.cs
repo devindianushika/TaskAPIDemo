@@ -13,6 +13,7 @@ namespace TaskAPI.Services.Profiles
         {
             CreateMap<Todo, TodoDTO>();
             CreateMap<CreateTodoDTO, Todo>();
+            CreateMap<UpdateTodoDTO, Todo>();
         }
       
     }

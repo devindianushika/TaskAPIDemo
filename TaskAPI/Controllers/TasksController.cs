@@ -59,10 +59,18 @@ namespace TaskAPI.Controllers
             return Ok(returnTodo);
         }
 
-        [HttpPut]
-        public IActionResult UpdateTask()
+        [HttpPut("{taskid}")]
+        public ActionResult<TodoDTO> UpdateTask(int authorid, int taskid, UpdateTodoDTO todo)
         {
-            return Ok();
+            var updatingtodo = _itodoservice.getTodo(authorid, taskid);
+            if(updatingtodo is null)
+            {
+                return NotFound();
+            }
+            var mappedtodo =  _imapper.Map(todo,updatingtodo);
+            var updatedtodo = _itodoservice.updateTodo(mappedtodo);
+           
+            return Ok(updatedtodo);
         }
 
         [HttpDelete]
