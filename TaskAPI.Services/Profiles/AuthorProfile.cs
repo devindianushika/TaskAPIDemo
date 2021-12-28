@@ -13,7 +13,9 @@ namespace TaskAPI.Services.Profiles
         {
             CreateMap<Author, AuthorDTO>() // if destination has any attribute name does not match with source's attribute name map them using "formemeber" 
                 .ForMember(desti => desti.Address,
-                option => option.MapFrom(src => $"{src.Address}{src.Street},{src.City}")); 
+                option => option.MapFrom(src => $"{src.Address}{src.Street},{src.City}"));
+
+            CreateMap<CreateAuthorDTO, Author>();
         }
     }
 }

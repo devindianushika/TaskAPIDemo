@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskAPI.Models;
 using TaskAPI.Services.Todos;
 using TaskAPI.Services.ViewModels;
 
@@ -45,22 +46,17 @@ namespace TaskAPI.Controllers
                 
            var mappedTask = _imapper.Map<TodoDTO>(task);
             return Ok(mappedTask);
-        }
-
-
-        
+        }       
 
        
         [HttpPost]
-        public IActionResult CreateNewTask()
+        public ActionResult<TodoDTO> CreateNewTask(int authorid, CreateTodoDTO todo)
         {
-           /* var task1 = new Task()
-            {
-                Name = task.Name,
-                Age = task.Age
-            };*/
-    
-            return Ok();
+            var mappedTodo = _imapper.Map<Todo>(todo);
+            var createdtodo = _itodoservice.addTodo(authorid, mappedTodo);
+            var returnTodo = _imapper.Map<TodoDTO>(createdtodo);
+
+            return Ok(returnTodo);
         }
 
         [HttpPut]

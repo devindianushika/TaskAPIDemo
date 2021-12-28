@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskAPI.Models;
 using TaskAPI.Services.Authors;
 using TaskAPI.Services.ViewModels;
 
@@ -45,9 +46,17 @@ namespace TaskAPI.Controllers
             var MappedAuthordto = _imapper.Map<AuthorDTO>(author);
             return Ok(MappedAuthordto);
         }
+        [HttpPost]
+        public ActionResult<AuthorDTO> CreateAuthors(CreateAuthorDTO author)
+        {
+            var MappedAuthor = _imapper.Map<Author>(author);
+            var createdauthor = _authorService.AddAuthor(MappedAuthor);
+            var returnAuthor = _imapper.Map<AuthorDTO>(createdauthor);
+          
+            return Ok(returnAuthor);
+        }
 
-        
-
+       
 
 
     }

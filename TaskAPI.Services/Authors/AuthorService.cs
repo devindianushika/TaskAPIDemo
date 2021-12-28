@@ -44,5 +44,12 @@ namespace TaskAPI.Services.Authors
             return authorcollection.ToList(); //to get better performance use data base call at this point only
         }
 
+        public Author AddAuthor(Author author)
+        {
+            _todoDbContext.Authors.Add(author);
+            _todoDbContext.SaveChanges();
+            return _todoDbContext.Authors.Find(author.Id);
+        }
+
     }
 }
