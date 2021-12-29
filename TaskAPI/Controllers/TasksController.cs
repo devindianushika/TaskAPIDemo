@@ -73,15 +73,16 @@ namespace TaskAPI.Controllers
             return Ok(updatedtodo);
         }
 
-        [HttpDelete]
-        public IActionResult DeleteTask()
+        [HttpDelete("{taskid}")]
+        public IActionResult DeleteTask(int authorid,int taskid)
         {
-            var somethingrong = true;
-            if (somethingrong)
+            var todo = _itodoservice.getTodo(authorid,taskid);
+            if (todo is null)
             {
                 return BadRequest();
             }
-            return Ok();
+            var message = _itodoservice.deleteTodo(todo);
+            return Ok(message);
         }
 
     }

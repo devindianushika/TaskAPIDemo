@@ -35,6 +35,12 @@ namespace TaskAPI.Services.Todos
             return todo;
         }
 
+        public string deleteTodo(Todo todo)
+        {
+            _todbcontext.Todos.Remove(todo);
+            _todbcontext.SaveChanges();
+            return ("deleted successfully");
+        }
 
     }
 }
