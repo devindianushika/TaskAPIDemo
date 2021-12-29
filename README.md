@@ -1,1 +1,4 @@
-TaskAPIDemo is about Todos functionalities using .NET
+
+# TaskAPIDemo is about basic CRUD operations done by .NET core 
+
+

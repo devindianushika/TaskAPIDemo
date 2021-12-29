@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskAPI.Services;
+using TaskAPI.Services.Authors;
+using TaskAPI.Services.Todos;
 
 namespace TaskAPI
 {
@@ -28,12 +30,17 @@ namespace TaskAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(options => 
+            {
+                options.ReturnHttpNotAcceptable = true;
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TaskAPI", Version = "v1" });
             });
-            services.AddScoped<ITodoService, TodoService>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // to map every domain in our project
+            services.AddScoped<ITodoService, TodoSqlService>();
+            services.AddScoped<IAuthorService, AuthorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
